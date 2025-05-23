@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { patientsData, type Patient } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
@@ -84,7 +85,7 @@ export default async function PatientsPage() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem asChild>
                           <Link href={`/patients/${patient.id}`} className="flex items-center w-full">
                             <Icons.View className="mr-2 h-4 w-4" /> View Details
                           </Link>
@@ -93,7 +94,7 @@ export default async function PatientsPage() {
                           <Icons.Edit className="mr-2 h-4 w-4" /> Edit
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-destructive hover:!text-destructive-foreground hover:!bg-destructive/90">
+                        <DropdownMenuItem className="text-destructive hover:!text-destructive-foreground hover:!bg-destructive/90 focus:!text-destructive-foreground focus:!bg-destructive/90">
                           <Icons.Trash2 className="mr-2 h-4 w-4" /> Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
