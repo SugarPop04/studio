@@ -50,7 +50,7 @@ export default function AppointmentOptimizerPage() {
       toast({
         title: "Suggestions Generated",
         description: "AI has provided optimal appointment times.",
-        variant: "default" // Using default which maps to primary/accent
+        variant: "default"
       });
     } catch (error) {
       console.error("Error fetching suggestions:", error);
@@ -154,7 +154,7 @@ export default function AppointmentOptimizerPage() {
                 />
               </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="pt-6">
               <Button type="submit" disabled={isLoading} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 {isLoading ? (
                   <>
@@ -176,13 +176,13 @@ export default function AppointmentOptimizerPage() {
       {suggestions && (
         <Card className="mt-6 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-accent-foreground">Suggested Appointment Times</CardTitle> {/* Using accent here as per proposal for positive feedback */}
+            <CardTitle className="text-accent-foreground">Suggested Appointment Times</CardTitle> 
           </CardHeader>
           <CardContent>
-            <Alert variant="default" className="bg-accent/10 border-accent/50"> {/* Custom styling for accent alert */}
+            <Alert variant="default" className="bg-accent/10 border-accent/50"> 
               <Icons.CalendarPlus className="h-5 w-5 text-accent" />
-              <AlertTitle className="text-accent">Recommendations</AlertTitle>
-              <AlertDescription className="text-accent-foreground/80">
+              <AlertTitle className="text-accent font-semibold">Recommendations</AlertTitle> {/* Made font-semibold */}
+              <AlertDescription className="text-accent-foreground/90"> {/* Slightly increased opacity */}
                 <p className="font-semibold mb-2">Based on the provided data, here are some optimal times:</p>
                 <ul className="list-disc list-inside space-y-1 mb-3">
                   {suggestions.suggestedTimes.map((time, index) => (

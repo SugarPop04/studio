@@ -19,6 +19,7 @@ import {
   type NewDoctorFormValues,
   type CreateDoctorActionResult
 } from "../schemas";
+import { Separator } from "@/components/ui/separator";
 
 export default function AddNewDoctorPage() {
   const router = useRouter();
@@ -76,7 +77,7 @@ export default function AddNewDoctorPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Icons.UserPlus className="h-8 w-8 text-primary" /> {/* Using UserPlus as a generic "add person" icon */}
+          <Icons.UserPlus className="h-8 w-8 text-primary" /> 
           <h1 className="text-3xl font-bold tracking-tight">Add New Doctor</h1>
         </div>
         <Button variant="outline" asChild>
@@ -95,89 +96,100 @@ export default function AddNewDoctorPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Dr. Jane Smith" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="specialization"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Specialization</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Cardiology" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="department"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Department</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., Internal Medicine" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+               <div>
+                <h3 className="text-lg font-medium mb-3 text-foreground/80">Basic Information</h3>
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., Dr. Jane Smith" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="specialization"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Specialization</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., Cardiology" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="department"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Department</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g., Internal Medicine" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
               </div>
 
-              <FormField
-                control={form.control}
-                name="contact"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Contact Information</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., dr.smith@example.com or +1234567890" {...field} />
-                    </FormControl>
-                     <FormDescription>
-                      Email address or phone number.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="availabilityDescription"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Availability Description (Optional)</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="e.g., Mon 9am-5pm, Tue 1pm-4pm. Prefers morning appointments." {...field} rows={3}/>
-                    </FormControl>
-                    <FormDescription>
-                      Describe the doctor's general availability. This will be used to set a default schedule.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <Separator className="my-6" />
+              
+              <div>
+                <h3 className="text-lg font-medium mb-3 text-foreground/80">Contact & Availability</h3>
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="contact"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Contact Information</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., dr.smith@example.com or +1234567890" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Email address or phone number.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="availabilityDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Availability Description (Optional)</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="e.g., Mon 9am-5pm, Tue 1pm-4pm. Prefers morning appointments." {...field} rows={3}/>
+                        </FormControl>
+                        <FormDescription>
+                          Describe the doctor's general availability. This will be used to set a default schedule.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              
                {form.formState.errors.root?.serverError && (
                 <FormMessage className="text-destructive">
                   {form.formState.errors.root.serverError.message}
                 </FormMessage>
               )}
             </CardContent>
-            <CardFooter className="flex justify-end gap-4">
+            <CardFooter className="flex justify-end gap-4 pt-6">
                <Button type="button" variant="outline" onClick={() => router.push('/doctors')} disabled={isLoading}>
                 Cancel
               </Button>

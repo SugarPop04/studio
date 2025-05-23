@@ -33,7 +33,7 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Avatar className="h-12 w-12 border">
+          <Avatar className="h-12 w-12 border-2 border-primary/30">
             <AvatarImage src={patient.avatarUrl} alt={patient.name} data-ai-hint="person avatar" />
             <AvatarFallback>{patient.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
           </Avatar>
@@ -56,22 +56,22 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
           <CardDescription>Detailed information about the patient.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"> {/* Increased gap-y */}
             <div>
               <p className="text-sm font-medium text-muted-foreground">Age</p>
-              <p className="text-lg">{patient.age}</p>
+              <p className="text-lg font-medium">{patient.age}</p>
             </div>
             <div>
               <p className="text-sm font-medium text-muted-foreground">Gender</p>
-              <p className="text-lg">{patient.gender}</p>
+              <p className="text-lg font-medium">{patient.gender}</p>
             </div>
             <div>
               <p className="text-sm font-medium text-muted-foreground">Contact</p>
-              <p className="text-lg">{patient.contact}</p>
+              <p className="text-lg font-medium">{patient.contact}</p>
             </div>
             <div>
               <p className="text-sm font-medium text-muted-foreground">Last Visit</p>
-              <p className="text-lg">{new Date(patient.lastVisit).toLocaleDateString()}</p>
+              <p className="text-lg font-medium">{new Date(patient.lastVisit).toLocaleDateString()}</p>
             </div>
           </div>
 
@@ -79,17 +79,17 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
 
           <div>
             <p className="text-sm font-medium text-muted-foreground">Address</p>
-            <p className="text-lg whitespace-pre-line">{patient.address}</p>
+            <p className="text-lg whitespace-pre-line font-medium">{patient.address}</p>
           </div>
 
           <Separator />
 
           <div>
             <p className="text-sm font-medium text-muted-foreground">Medical History</p>
-            <p className="text-lg whitespace-pre-line">{patient.medicalHistory || "N/A"}</p>
+            <p className="text-lg whitespace-pre-line font-medium">{patient.medicalHistory || "N/A"}</p>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-end gap-2">
+        <CardFooter className="flex justify-end gap-2 pt-4"> {/* Added pt-4 */}
             <Button variant="outline" asChild>
               <Link href={`/patients/${patient.id}/edit`}>
                 <Icons.Edit className="mr-2 h-4 w-4" /> Edit Patient

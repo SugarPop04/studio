@@ -32,12 +32,13 @@ export default async function PatientsPage() {
         </Link>
       </div>
 
-      <Card>
+      <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Patients</CardTitle>
           <CardDescription>Manage your hospital&apos;s patient records.</CardDescription>
-          <div className="pt-4">
-            <Input placeholder="Search patients..." className="max-w-sm" />
+          <div className="pt-4 relative">
+            <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 transform mt-[9px] h-4 w-4 text-muted-foreground" />
+            <Input placeholder="Search patients by name or contact..." className="max-w-sm pl-10" />
           </div>
         </CardHeader>
         <CardContent>

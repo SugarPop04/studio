@@ -47,7 +47,7 @@ export default async function AppointmentsPage() {
                 AI Optimizer
             </Button>
             </Link>
-            <Link href="/appointments/new"> {/* Placeholder link for scheduling new appointments */}
+            <Link href="/appointments/new"> 
             <Button>
                 <Icons.CalendarPlus className="mr-2 h-4 w-4" />
                 Schedule New
@@ -66,8 +66,9 @@ export default async function AppointmentsPage() {
             <CardHeader>
               <CardTitle>Upcoming Appointments</CardTitle>
               <CardDescription>Manage all scheduled appointments.</CardDescription>
-              <div className="pt-4">
-                <Input placeholder="Search appointments by patient or doctor..." className="max-w-sm" />
+              <div className="pt-4 relative">
+                <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 transform mt-[9px] h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Search by patient, doctor, or type..." className="max-w-sm pl-10" />
               </div>
             </CardHeader>
             <CardContent>
@@ -112,7 +113,7 @@ export default async function AppointmentsPage() {
                             <DropdownMenuItem>
                               <Icons.Edit className="mr-2 h-4 w-4" /> Reschedule
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive hover:!text-destructive-foreground focus:!text-destructive-foreground hover:!bg-destructive/90 focus:!bg-destructive/90">
                               <Icons.Trash2 className="mr-2 h-4 w-4" /> Cancel
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -134,8 +135,8 @@ export default async function AppointmentsPage() {
             <CardContent className="flex justify-center p-4">
               <Calendar
                 mode="single"
-                selected={new Date()} // Example: show current date selected
-                className="rounded-md border"
+                selected={new Date()} 
+                className="rounded-md border shadow-sm" 
               />
             </CardContent>
              <CardContent className="text-center text-muted-foreground pb-6">

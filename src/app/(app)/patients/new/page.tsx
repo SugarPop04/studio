@@ -21,6 +21,8 @@ import {
   type CreatePatientActionResult
 } from "../schemas";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+
 
 export default function AddNewPatientPage() {
   const router = useRouter();
@@ -31,8 +33,8 @@ export default function AddNewPatientPage() {
     resolver: zodResolver(NewPatientFormSchema),
     defaultValues: {
       name: "",
-      age: "" as unknown as number, // Initialize with empty string, coerce.number will handle it
-      gender: "", // Initialize with empty string
+      age: "" as unknown as number, 
+      gender: "", 
       contact: "",
       address: "",
       medicalHistory: "",
@@ -41,7 +43,7 @@ export default function AddNewPatientPage() {
 
   async function onSubmit(values: NewPatientFormValues) {
     setIsLoading(true);
-    form.clearErrors(); // Clear previous errors
+    form.clearErrors(); 
 
     const result: CreatePatientActionResult = await createPatientAction(values);
 
@@ -53,7 +55,7 @@ export default function AddNewPatientPage() {
         description: result.success,
         variant: "default",
       });
-      router.push("/patients"); // Redirect to patients list
+      router.push("/patients"); 
     } else {
       toast({
         title: "Error",
@@ -91,7 +93,7 @@ export default function AddNewPatientPage() {
       </div>
 
       <Alert>
-        <Icons.Search className="h-4 w-4" />
+        <Icons.Search className="h-4 w-4" /> {/* Consider changing icon if more appropriate like Info */}
         <AlertTitle>Already Registered?</AlertTitle>
         <AlertDescription>
           If you think this patient might already be in our system, you can{" "}
@@ -110,112 +112,128 @@ export default function AddNewPatientPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., John Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="age"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Age</FormLabel>
-                      <FormControl>
-                        <Input type="number" placeholder="e.g., 35" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="gender"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Gender</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value || ""} defaultValue={field.value || ""}>
+              <div>
+                <h3 className="text-lg font-medium mb-3 text-foreground/80">Personal Information</h3>
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
+                          <Input placeholder="e.g., John Doe" {...field} />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Male">Male</SelectItem>
-                          <SelectItem value="Female">Female</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="age"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Age</FormLabel>
+                          <FormControl>
+                            <Input type="number" placeholder="e.g., 35" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="gender"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Gender</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value || ""} defaultValue={field.value || ""}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select gender" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="Male">Male</SelectItem>
+                              <SelectItem value="Female">Female</SelectItem>
+                              <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <Separator className="my-6" />
+
+              <div>
+                <h3 className="text-lg font-medium mb-3 text-foreground/80">Contact & Address</h3>
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="contact"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Contact Information</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g., john.doe@example.com or +1234567890" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Email address or phone number.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Address</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="e.g., 123 Main St, Anytown, USA" {...field} rows={3}/>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              
+              <Separator className="my-6" />
+
+              <div>
+                <h3 className="text-lg font-medium mb-3 text-foreground/80">Medical Information</h3>
+                 <FormField
+                  control={form.control}
+                  name="medicalHistory"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Medical History (Optional)</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="e.g., Allergies, past conditions, etc." {...field} rows={4} value={field.value || ''}/>
+                      </FormControl>
+                      <FormDescription>
+                        Brief summary of relevant medical history.
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
 
-              <FormField
-                control={form.control}
-                name="contact"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Contact Information</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., john.doe@example.com or +1234567890" {...field} />
-                    </FormControl>
-                     <FormDescription>
-                      Email address or phone number.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Address</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="e.g., 123 Main St, Anytown, USA" {...field} rows={3}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="medicalHistory"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Medical History (Optional)</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="e.g., Allergies, past conditions, etc." {...field} rows={4} value={field.value || ''}/>
-                    </FormControl>
-                    <FormDescription>
-                      Brief summary of relevant medical history.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
                {form.formState.errors.root?.serverError && (
                 <FormMessage className="text-destructive">
                   {form.formState.errors.root.serverError.message}
                 </FormMessage>
               )}
             </CardContent>
-            <CardFooter className="flex justify-end gap-4">
+            <CardFooter className="flex justify-end gap-4 pt-6"> {/* Added pt-6 */}
                <Button type="button" variant="outline" onClick={() => router.push('/patients')} disabled={isLoading}>
                 Cancel
               </Button>

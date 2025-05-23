@@ -27,41 +27,44 @@ export default async function DoctorsPage() {
         </Link>
       </div>
 
-      <div className="mb-4">
-        <Input placeholder="Search doctors by name or specialization..." className="max-w-md" />
+      <div className="mb-4 relative">
+        <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input placeholder="Search doctors by name or specialization..." className="max-w-md pl-10" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {doctors.map((doctor) => (
-          <Card key={doctor.id} className="flex flex-col">
-            <CardHeader className="items-center">
+          <Card key={doctor.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="items-center text-center"> {/* Centered text in header */}
               <Image
                 alt={`${doctor.name}'s avatar`}
-                className="aspect-square rounded-full object-cover mb-4 border-2 border-primary/20"
+                className="aspect-square rounded-full object-cover mb-4 border-2 border-primary/30 shadow-md" /* Added shadow to avatar */
                 height="120"
                 src={doctor.avatarUrl}
                 width="120"
                 data-ai-hint="doctor portrait"
               />
               <CardTitle className="text-xl">{doctor.name}</CardTitle>
-              <CardDescription className="text-primary">{doctor.specialization}</CardDescription>
+              <CardDescription className="text-primary font-medium">{doctor.specialization}</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow">
-              <div className="text-sm text-muted-foreground space-y-1">
-                <p><span className="font-medium text-foreground">Department:</span> {doctor.department}</p>
-                <p><span className="font-medium text-foreground">Contact:</span> {doctor.contact}</p>
-                <div>
-                  <span className="font-medium text-foreground">Availability:</span>
-                  <ul className="list-disc list-inside ml-1">
-                    {doctor.availability.slice(0, 2).map(avail => ( // Show first 2 for brevity
-                      <li key={avail.day}>{avail.day}: {avail.times.join(', ')}</li>
-                    ))}
-                    {doctor.availability.length > 2 && <li>...and more</li>}
-                  </ul>
-                </div>
+            <CardContent className="flex-grow space-y-2"> {/* Added space-y-2 */}
+              <div className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Department:</span> {doctor.department}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Contact:</span> {doctor.contact}
+              </div>
+              <div>
+                <span className="font-medium text-foreground text-sm">Availability:</span>
+                <ul className="list-disc list-inside ml-1 text-sm text-muted-foreground">
+                  {doctor.availability.slice(0, 2).map(avail => ( 
+                    <li key={avail.day}>{avail.day}: {avail.times.join(', ')}</li>
+                  ))}
+                  {doctor.availability.length > 2 && <li className="text-xs">...and more</li>}
+                </ul>
               </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="pt-4"> {/* Added pt-4 */}
               <Button variant="outline" className="w-full">
                 <Icons.View className="mr-2 h-4 w-4" />
                 View Profile
