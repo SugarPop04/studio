@@ -10,6 +10,7 @@ import {
   UserPlus,
   ChevronDown,
   ChevronRight,
+  ChevronLeft, // Added import
   Search,
   PlusCircle,
   MoreHorizontal,
@@ -36,11 +37,12 @@ export const Icons = {
   Optimizer: Bot,
   Settings: Settings,
   Login: LogIn,
-  UserPlus: UserPlus, // Corrected: Was Signup: UserPlus
-  Signup: UserPlus, // Keep Signup as an alias if needed, or remove if UserPlus is preferred everywhere
+  UserPlus: UserPlus,
+  Signup: UserPlus,
   Logout: LogOut,
   ChevronDown: ChevronDown,
   ChevronRight: ChevronRight,
+  ChevronLeft: ChevronLeft, // Added to Icons object
   Search: Search,
   PlusCircle: PlusCircle,
   MoreHorizontal: MoreHorizontal,
