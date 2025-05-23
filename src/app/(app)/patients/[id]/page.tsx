@@ -90,14 +90,21 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
           </div>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
-            <Button variant="outline">
+            <Button variant="outline" asChild>
+              <Link href={`/patients/${patient.id}/edit`}>
                 <Icons.Edit className="mr-2 h-4 w-4" /> Edit Patient
+              </Link>
             </Button>
-            <Button>
+            <Button asChild>
+              <Link href={`/appointments/new?patientId=${patient.id}`}>
                 <Icons.CalendarPlus className="mr-2 h-4 w-4" /> Book Appointment
+              </Link>
             </Button>
         </CardFooter>
       </Card>
+      <p className="text-sm text-muted-foreground">
+        Note: The "Edit Patient" functionality is not yet fully implemented. Clicking it will lead to a page that needs to be created.
+      </p>
     </div>
   );
 }

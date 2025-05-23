@@ -1,9 +1,9 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
@@ -33,13 +33,16 @@ const appointmentTypes: NewAppointmentFormValues["type"][] = ["Check-up", "Consu
 
 export default function NewAppointmentPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+
+  const patientIdFromQuery = searchParams.get("patientId");
 
   const form = useForm<NewAppointmentFormValues>({
     resolver: zodResolver(NewAppointmentFormSchema),
     defaultValues: {
-      patientId: "",
+      patientId: patientIdFromQuery || "",
       doctorId: "",
       date: undefined, // Initialize as undefined for date picker placeholder
       time: "", // e.g., "10:00"
@@ -47,6 +50,13 @@ export default function NewAppointmentPage() {
       notes: "",
     },
   });
+
+  useEffect(() => {
+    if (patientIdFromQuery) {
+      form.setValue('patientId', patientIdFromQuery);
+    }
+  }, [patientIdFromQuery, form.setValue]);
+
 
   async function onSubmit(values: NewAppointmentFormValues) {
     setIsLoading(true);
@@ -112,7 +122,7 @@ export default function NewAppointmentPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Patient</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select a patient" />
