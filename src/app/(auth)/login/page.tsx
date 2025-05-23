@@ -24,7 +24,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center mb-4">
-            <Icons.Logo className="h-12 w-12 text-primary" />
+            <Icons.Logo className="h-12 w-12 text-destructive" />
           </div>
           <CardTitle className="text-3xl font-bold">Welcome Back!</CardTitle>
           <CardDescription>Enter your credentials to access MediTrack</CardDescription>

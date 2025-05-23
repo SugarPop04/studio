@@ -27,7 +27,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader className="p-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 group-data-[collapsible=icon]:hidden">
-            <Icons.Logo className="h-8 w-8 text-primary" />
+            <Icons.Logo className="h-8 w-8 text-destructive" />
             <h1 className="text-xl font-semibold text-primary">MediTrack</h1>
           </Link>
            <div className="group-data-[collapsible=icon]:hidden">
