@@ -62,7 +62,7 @@ export default async function AppointmentsPage() {
           <TabsTrigger value="calendar">Calendar View</TabsTrigger>
         </TabsList>
         <TabsContent value="list">
-          <Card className="shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle>Upcoming Appointments</CardTitle>
               <CardDescription>Manage all scheduled appointments.</CardDescription>
@@ -127,7 +127,7 @@ export default async function AppointmentsPage() {
           </Card>
         </TabsContent>
         <TabsContent value="calendar">
-          <Card className="shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle>Calendar View</CardTitle>
               <CardDescription>Visualize appointments on a calendar.</CardDescription>
@@ -136,7 +136,7 @@ export default async function AppointmentsPage() {
               <Calendar
                 mode="single"
                 selected={new Date()} 
-                className="rounded-md border shadow-sm" 
+                className="rounded-md border" 
               />
             </CardContent>
              <CardContent className="text-center text-muted-foreground pb-6">

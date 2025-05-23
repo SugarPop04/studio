@@ -1,3 +1,4 @@
+
 // src/app/(app)/error.tsx
 "use client"; // Error components must be Client Components
 
@@ -20,7 +21,7 @@ export default function Error({
 
   return (
     <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center p-4">
-      <Card className="w-full max-w-lg text-center shadow-xl">
+      <Card className="w-full max-w-lg text-center shadow-lg">
         <CardHeader>
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10 mb-4">
             <Icons.AlertTriangle className="h-10 w-10 text-destructive" />

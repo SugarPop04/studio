@@ -88,7 +88,7 @@ export default function AddNewDoctorPage() {
         </Button>
       </div>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>New Doctor Details</CardTitle>
           <CardDescription>Fill in the form below to add a new doctor to the directory.</CardDescription>

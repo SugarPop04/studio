@@ -32,7 +32,7 @@ export default async function PatientsPage() {
         </Link>
       </div>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>Patients</CardTitle>
           <CardDescription>Manage your hospital&apos;s patient records.</CardDescription>

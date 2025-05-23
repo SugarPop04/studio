@@ -108,7 +108,7 @@ export default function NewAppointmentPage() {
         </Button>
       </div>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>Appointment Details</CardTitle>
           <CardDescription>Fill in the form to schedule a new appointment.</CardDescription>

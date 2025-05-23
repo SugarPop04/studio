@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -70,7 +71,7 @@ export default function AppointmentOptimizerPage() {
         <Icons.Optimizer className="h-8 w-8 mr-3 text-primary" />
         <h1 className="text-3xl font-bold tracking-tight">AI Appointment Optimizer</h1>
       </div>
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>Find Optimal Appointment Times</CardTitle>
           <CardDescription>
@@ -174,7 +175,7 @@ export default function AppointmentOptimizerPage() {
       </Card>
 
       {suggestions && (
-        <Card className="mt-6 shadow-lg">
+        <Card className="mt-6">
           <CardHeader>
             <CardTitle className="text-accent-foreground">Suggested Appointment Times</CardTitle> 
           </CardHeader>

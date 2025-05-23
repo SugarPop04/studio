@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { doctorsData, type Doctor } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
@@ -34,11 +35,11 @@ export default async function DoctorsPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {doctors.map((doctor) => (
-          <Card key={doctor.id} className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Card key={doctor.id} className="flex flex-col hover:shadow-md transition-shadow duration-300">
             <CardHeader className="items-center text-center"> {/* Centered text in header */}
               <Image
                 alt={`${doctor.name}'s avatar`}
-                className="aspect-square rounded-full object-cover mb-4 border-2 border-primary/30 shadow-md" /* Added shadow to avatar */
+                className="aspect-square rounded-full object-cover mb-4 border-2 border-primary/30" 
                 height="120"
                 src={doctor.avatarUrl}
                 width="120"

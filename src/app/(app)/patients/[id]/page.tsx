@@ -50,7 +50,7 @@ export default async function PatientDetailPage({ params }: PatientDetailPagePro
         </Button>
       </div>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>Patient Information</CardTitle>
           <CardDescription>Detailed information about the patient.</CardDescription>

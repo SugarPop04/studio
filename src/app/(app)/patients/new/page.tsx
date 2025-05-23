@@ -104,7 +104,7 @@ export default function AddNewPatientPage() {
         </AlertDescription>
       </Alert>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader>
           <CardTitle>New Patient Details</CardTitle>
           <CardDescription>Fill in the form below to add a new patient record.</CardDescription>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -21,7 +22,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md shadow-xl">
+      <Card className="w-full max-w-md shadow-md">
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center mb-4">
             <Icons.Logo className="h-12 w-12 text-destructive" />
