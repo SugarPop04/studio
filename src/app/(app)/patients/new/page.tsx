@@ -15,11 +15,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
 import { createPatientAction } from "../actions";
-import { 
-  NewPatientFormSchema, 
-  type NewPatientFormValues, 
-  type CreatePatientActionResult 
+import {
+  NewPatientFormSchema,
+  type NewPatientFormValues,
+  type CreatePatientActionResult
 } from "../schemas";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function AddNewPatientPage() {
   const router = useRouter();
@@ -89,9 +90,21 @@ export default function AddNewPatientPage() {
         </Button>
       </div>
 
+      <Alert>
+        <Icons.Search className="h-4 w-4" />
+        <AlertTitle>Already Registered?</AlertTitle>
+        <AlertDescription>
+          If you think this patient might already be in our system, you can{" "}
+          <Link href="/patients" className="font-medium text-primary hover:underline">
+            search existing patient records
+          </Link>{" "}
+          first to avoid duplicates.
+        </AlertDescription>
+      </Alert>
+
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle>Patient Details</CardTitle>
+          <CardTitle>New Patient Details</CardTitle>
           <CardDescription>Fill in the form below to add a new patient record.</CardDescription>
         </CardHeader>
         <Form {...form}>
