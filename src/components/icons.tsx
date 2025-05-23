@@ -1,3 +1,4 @@
+
 import {
   LayoutDashboard,
   Users,
@@ -24,6 +25,7 @@ import {
   Sun,
   LogOut,
   BriefcaseMedical,
+  AlertTriangle, // Added import for AlertTriangle
 } from 'lucide-react';
 
 export const Icons = {
@@ -48,9 +50,11 @@ export const Icons = {
   View: Eye,
   CalendarPlus: CalendarPlus,
   Clock: Clock,
+  Bot: Bot, // Alias for Optimizer
   Moon: Moon,
   Sun: Sun,
   Logo: BriefcaseMedical,
+  AlertTriangle: AlertTriangle, // Added AlertTriangle to the Icons object
 };
 
 export type IconName = keyof typeof Icons;
