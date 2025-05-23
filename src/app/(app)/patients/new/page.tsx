@@ -30,8 +30,8 @@ export default function AddNewPatientPage() {
     resolver: zodResolver(NewPatientFormSchema),
     defaultValues: {
       name: "",
-      age: undefined, // Default to undefined for coerce.number()
-      gender: undefined,
+      age: "" as unknown as number, // Initialize with empty string, coerce.number will handle it
+      gender: "", // Initialize with empty string
       contact: "",
       address: "",
       medicalHistory: "",
@@ -131,7 +131,7 @@ export default function AddNewPatientPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Gender</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value || ""} defaultValue={field.value || ""}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select gender" />
@@ -187,7 +187,7 @@ export default function AddNewPatientPage() {
                   <FormItem>
                     <FormLabel>Medical History (Optional)</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="e.g., Allergies, past conditions, etc." {...field} rows={4}/>
+                      <Textarea placeholder="e.g., Allergies, past conditions, etc." {...field} rows={4} value={field.value || ''}/>
                     </FormControl>
                     <FormDescription>
                       Brief summary of relevant medical history.
