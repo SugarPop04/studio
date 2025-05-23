@@ -23,7 +23,7 @@ const navItems: NavItem[] = [
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <SidebarProvider defaultOpen>
+    <SidebarProvider defaultOpen={false}>
       <Sidebar side="left" variant="sidebar" collapsible="icon">
         <SidebarHeader className="p-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 group-data-[collapsible=icon]:hidden">
