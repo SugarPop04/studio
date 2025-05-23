@@ -14,7 +14,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
-import { createPatientAction, NewPatientFormSchema, type NewPatientFormValues, type CreatePatientActionResult } from "../actions";
+import { createPatientAction } from "../actions";
+import { 
+  NewPatientFormSchema, 
+  type NewPatientFormValues, 
+  type CreatePatientActionResult 
+} from "../schemas";
 
 export default function AddNewPatientPage() {
   const router = useRouter();
