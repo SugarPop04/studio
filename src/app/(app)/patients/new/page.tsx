@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Icons } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
-import { createPatientAction, NewPatientFormSchema, type NewPatientFormValues, type CreatePatientActionResult } from "./actions";
+import { createPatientAction, NewPatientFormSchema, type NewPatientFormValues, type CreatePatientActionResult } from "../actions";
 
 export default function AddNewPatientPage() {
   const router = useRouter();
@@ -63,7 +63,7 @@ export default function AddNewPatientPage() {
           }
         });
         if (result.errors._form) {
-           form.setError("root.serverError" as any, { type: "custom", message: result.errors._form.join(', ')});
+           form.setError("root.serverError" as any, { type: "custom", message: result.errors._form.join(', ') });
         }
       }
     }
