@@ -1,3 +1,4 @@
+
 import { appointmentsData, type Appointment } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,16 +12,17 @@ import Link from "next/link";
 import { Calendar } from "@/components/ui/calendar";
 
 async function getAppointments(): Promise<Appointment[]> {
+  // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 400));
   return appointmentsData;
 }
 
-function getStatusBadgeVariant(status: Appointment['status']): "default" | "secondary" | "destructive" | "outline" {
+function getStatusBadgeVariant(status: Appointment['status']): "default" | "accent" | "destructive" | "outline" {
   switch (status) {
     case "Scheduled":
       return "default"; // primary color
     case "Completed":
-      return "secondary"; // accent (green) color could be used here, or a muted one
+      return "accent"; // Use accent (green) for completed
     case "Cancelled":
       return "destructive";
     case "Pending":
@@ -45,7 +47,7 @@ export default async function AppointmentsPage() {
                 AI Optimizer
             </Button>
             </Link>
-            <Link href="/appointments/new">
+            <Link href="/appointments/new"> {/* Placeholder link for scheduling new appointments */}
             <Button>
                 <Icons.CalendarPlus className="mr-2 h-4 w-4" />
                 Schedule New
@@ -60,7 +62,7 @@ export default async function AppointmentsPage() {
           <TabsTrigger value="calendar">Calendar View</TabsTrigger>
         </TabsList>
         <TabsContent value="list">
-          <Card>
+          <Card className="shadow-lg">
             <CardHeader>
               <CardTitle>Upcoming Appointments</CardTitle>
               <CardDescription>Manage all scheduled appointments.</CardDescription>
@@ -124,19 +126,19 @@ export default async function AppointmentsPage() {
           </Card>
         </TabsContent>
         <TabsContent value="calendar">
-          <Card>
+          <Card className="shadow-lg">
             <CardHeader>
               <CardTitle>Calendar View</CardTitle>
               <CardDescription>Visualize appointments on a calendar.</CardDescription>
             </CardHeader>
-            <CardContent className="flex justify-center">
+            <CardContent className="flex justify-center p-4">
               <Calendar
                 mode="single"
                 selected={new Date()} // Example: show current date selected
                 className="rounded-md border"
               />
             </CardContent>
-             <CardContent className="text-center text-muted-foreground">
+             <CardContent className="text-center text-muted-foreground pb-6">
                 Full calendar functionality to be implemented.
              </CardContent>
           </Card>
