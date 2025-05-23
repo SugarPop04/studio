@@ -1,7 +1,7 @@
 
 'use server';
 
-import { type Patient } from '@/lib/data';
+import { type Patient, patientsData } from '@/lib/data'; // Import patientsData
 import { revalidatePath } from 'next/cache';
 import { 
   NewPatientFormSchema, 
@@ -40,7 +40,11 @@ export async function createPatientAction(
   };
 
   // --- SIMULATED DATA PERSISTENCE ---
-  console.log("Simulating: New patient created:", newPatient);
+  // Add the new patient to the in-memory array
+  patientsData.push(newPatient);
+  console.log("Simulating: New patient added to in-memory store:", newPatient);
+  console.log("Current patientsData:", patientsData);
+
 
   // Revalidate paths to attempt to show new data if it were persisted
   revalidatePath("/patients");
@@ -48,7 +52,7 @@ export async function createPatientAction(
 
   // Return success message and the created patient (simulated)
   return {
-    success: `Patient "${newPatient.name}" added successfully (simulated).`,
+    success: `Patient "${newPatient.name}" added successfully. The list will update.`,
     patient: newPatient,
   };
 }
